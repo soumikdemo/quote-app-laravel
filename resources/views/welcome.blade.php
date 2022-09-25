@@ -56,6 +56,7 @@
     <script>
         const api_url = window.location.href + 'api/';
         const listElement = document.getElementById('quotes-list');
+        const token = "<?php echo $token ?>";
 
         //Fetch data after the page is loaded
         window.onload = fetchKanyeQuotes;
@@ -63,12 +64,13 @@
 
         function fetchKanyeQuotes() {
             let fetch_status;
-            
+            console.log(token);
             // Create and Send the request
             fetch(api_url, {
                 method: "GET",
                 headers: {
-                    "Content-type": "application/json;charset=UTF-8"
+                    "Authorization": 'Bearer ' + token, // notice the Bearer before your token
+                    "Content-type": "application/json;charset=UTF-8",
                 }
             })
             .then(function (response) {
